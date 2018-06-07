@@ -26,9 +26,12 @@ RUN \
   mv Mirth\ Connect/* /opt/mirth-connect/ && \
   chown -R mirth /opt/mirth-connect
 
-RUN tar xzvf appdata.tar.gz
-RUN rm -f appdata.tar.gz
-RUN cp -rf appdata /opt/mirth-connect/
+RUN \
+  cd /tmp && \
+  tar xzvf appdata.tar.gz && \
+  rm -f appdata.tar.gz && \
+  cp -rf appdata /opt/mirth-connect/
+
 
 WORKDIR /opt/mirth-connect
 
