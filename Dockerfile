@@ -35,5 +35,9 @@ RUN chmod a+x /docker-entrypoint.sh
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
+COPY  appdata.zip /
+RUN unzip appdata.zip
+RUN rm -f appdata.zip
+RUN cp -rf appdata /opt/mirth-connect/
 
 CMD ["java", "-jar", "mirth-server-launcher.jar"]
