@@ -16,6 +16,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates
 
 VOLUME /opt/mirth-connect/appdata
 
+COPY  appdata.tar.gz /tmp
+
 RUN \
   cd /tmp && \
   wget http://downloads.mirthcorp.com/connect/$MIRTH_CONNECT_VERSION/mirthconnect-$MIRTH_CONNECT_VERSION-unix.tar.gz && \
@@ -24,6 +26,9 @@ RUN \
   mv Mirth\ Connect/* /opt/mirth-connect/ && \
   chown -R mirth /opt/mirth-connect
 
+RUN tar xzvf appdata.tar.gz
+RUN rm -f appdata.tar.gz
+RUN cp -rf appdata /opt/mirth-connect/
 
 WORKDIR /opt/mirth-connect
 
@@ -35,9 +40,5 @@ RUN chmod a+x /docker-entrypoint.sh
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
-COPY  appdata.tar.gz /
-RUN tar xzvf appdata.tar.gz
-RUN rm -f appdata.tar.gz
-RUN cp -rf appdata /opt/mirth-connect/
 
 CMD ["java", "-jar", "mirth-server-launcher.jar"]
