@@ -27,7 +27,7 @@ COPY HL7-MYSQL.xml /tmp
 
 RUN \
   cd /tmp && \
-  cp -af mirth.properties /opt/mirth-connect/conf/
+  cp -af mirth.properties /opt/mirth-connect/conf
   cp HL7-MYSQL.xml /opt/mirth-connect/
 
 
