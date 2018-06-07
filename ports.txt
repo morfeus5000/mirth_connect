@@ -1,0 +1,1 @@
+2a8779d50806        leviatan/mirth_connect:latest   "/docker-entrypoint.…"   41 minutes ago      Up 41 minutes       0.0.0.0:32811->8080/tcp, 0.0.0.0:32810->8443/tcp   mirth_connect
