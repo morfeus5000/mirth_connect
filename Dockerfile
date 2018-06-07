@@ -31,7 +31,9 @@ EXPOSE 8080 8443
 COPY docker-entrypoint.sh /
 COPY HL7-MYSQL.xml / 
 
-RUN  mv HL7-MYSQL.xml /opt/mirth-connect/
+RUN \
+  cd /tmp && \
+  cp HL7-MYSQL.xml /opt/mirth-connect/
 
 RUN echo "/opt/mirth-connect/HL7-MYSQL.xml" > /opt/mirth-connect/import.txt
 
