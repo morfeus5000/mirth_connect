@@ -13,10 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates
 	&& chmod +x /usr/local/bin/gosu
 
 
-
 VOLUME /opt/mirth-connect/appdata
-
-COPY  appdata.tar.gz /tmp
 
 RUN \
   cd /tmp && \
@@ -32,15 +29,15 @@ WORKDIR /opt/mirth-connect
 EXPOSE 8080 8443
 
 COPY docker-entrypoint.sh /
+COPY HL7-MYSQL.xml /opt/mirth-connect/
+
+RUN echo "/opt/mirth-connect/HL7-MYSQL.xml" > /opt/mirth-connect/import.txt
 
 RUN chmod a+x /docker-entrypoint.sh
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
-RUN \
-  cd /tmp && \
-  tar xzvf appdata.tar.gz && \
-  rm -f appdata.tar.gz && \
-  cp -rf appdata /opt/mirth-connect
+
 
 CMD ["java", "-jar", "mirth-server-launcher.jar"]
+CMD ["java", "-jar", "mirth-cli-launcher.jar -a https://127.0.0.1:8443 -u admin -p admin -v 0.0.0 -s '/opt/mirth-connect/import.txt']"
