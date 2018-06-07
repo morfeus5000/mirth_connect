@@ -42,7 +42,6 @@ RUN chmod a+x /docker-entrypoint.sh
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
-
+ENDTRYPOINT [java -jar mirth-cli-launcher.jar -a https://127.0.0.1:8443 -u admin -p admin -v 0.0.0 -s '/opt/mirth-connect/import.txt'"]
 
 CMD ["java", "-jar", "mirth-server-launcher.jar"]
-CMD ["java", "-jar", "mirth-cli-launcher.jar -a https://127.0.0.1:8443 -u admin -p admin -v 0.0.0 -s '/opt/mirth-connect/import.txt']"
