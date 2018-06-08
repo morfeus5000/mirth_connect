@@ -23,13 +23,10 @@ RUN \
   mv Mirth\ Connect/* /opt/mirth-connect/ && \
   chown -R mirth /opt/mirth-connect
 
-COPY HL7-MYSQL.xml /tmp 
 COPY mirth.properties /tmp
 
 RUN \
-  cd /tmp && \
-  cp -af mirth.properties /opt/mirth-connect/conf/ && \
-  cp HL7-MYSQL.xml /opt/mirth-connect/
+  cp -af /tmp/mirth.properties /opt/mirth-connect/conf/
 
 
 
@@ -39,8 +36,6 @@ EXPOSE 8080 8443
 
 COPY docker-entrypoint.sh /
 
-RUN echo "/opt/mirth-connect/HL7-MYSQL.xml" > /opt/mirth-connect/import.txt
-RUN echo "start" >> /opt/mirth-connect/import.txt
 
 RUN chmod a+x /docker-entrypoint.sh
 
