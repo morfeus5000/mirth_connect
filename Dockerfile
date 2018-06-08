@@ -24,9 +24,11 @@ RUN \
   chown -R mirth /opt/mirth-connect
 
 COPY HL7-MYSQL.xml /tmp 
+COPY mirth.properties /tmp
 
 RUN \
   cd /tmp && \
+  cp -af mirth.properties /opt/mirth-connect/conf/ && \
   cp HL7-MYSQL.xml /opt/mirth-connect/
 
 
@@ -45,4 +47,5 @@ ENTRYPOINT ["/docker-entrypoint.sh"]
 
 
 CMD ["java", "-jar", "mirth-server-launcher.jar"]
+ 
 
