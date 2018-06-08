@@ -46,6 +46,6 @@ RUN chmod a+x /docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
 
-CMD ["java", "-jar", "mirth-server-launcher.jar "]
+CMD ["java", "-jar", "mirth-server-launcher.jar"]
  
 
