@@ -32,6 +32,7 @@ RUN \
   cp HL7-MYSQL.xml /opt/mirth-connect/
 
 
+
 WORKDIR /opt/mirth-connect
 
 EXPOSE 8080 8443
