@@ -24,6 +24,7 @@ RUN \
   chown -R mirth /opt/mirth-connect
 
 COPY HL7-MYSQL.xml /tmp 
+COPY mirth.properties /tmp 
 
 RUN \
   cd /tmp && \
